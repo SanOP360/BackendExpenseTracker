@@ -75,6 +75,26 @@
   background-color: rgba(9, 9, 240, 0.771);
   color:rgba(255, 255, 255, 0.879)
 }
+.divLink{
+  display: flex;
+  align-items: center;
+  margin: 0.5rem auto;
+  padding:8px 15px;
+  width: 90%;
+  justify-content: center;
+
+}
+.link{
+  color:red;
+  align-items: center;
+  font-size: 1.2rem;
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration: none;
+  text-align: center;
+}
+.link:hover{
+  text-decoration: underline;
+}
 
 
 @media screen and (max-width:700px){
