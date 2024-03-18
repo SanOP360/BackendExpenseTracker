@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize"); // Corrected import
+const { DataTypes } = require("sequelize"); 
 
 const sequelize = require("../database");
 
