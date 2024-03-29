@@ -1,5 +1,6 @@
 const User=require('../models/User');
 const bcrypt= require('bcrypt');
+const jwt=require('jsonwebtoken')
 
 
 exports.signupUser= async(req,res)=>{
@@ -30,17 +31,22 @@ exports.loginUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const passwordMatch=await bcrypt.compare(password,existingUser.password);
+    const passwordMatch = await bcrypt.compare(password, existingUser.password);
 
-
-    if(!passwordMatch){
-      return res.status(400).json({message:"Incorrect Password"});
+    if (!passwordMatch) {
+      return res.status(400).json({ message: "Incorrect Password" });
     }
 
-    return res.status(200).json({message:"User login successfully"})
+    
+    const token = jwt.sign(
+      { userId: existingUser.id },
+      "secrettoken" 
+    );
 
+    return res.status(200).json({ message: "User login successfully", token });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
