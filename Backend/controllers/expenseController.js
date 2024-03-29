@@ -3,8 +3,9 @@ const Expense = require('../models/Expense');
 exports.postExpenses = async (req, res) => {
   const { price, description, categories} = req.body;
   try {
+    const userId=req.user.id;
     await Expense.create({
-      price, description, categories
+      price, description, categories,UserId:userId
     });
     res.status(201).json({ message: "Expense Created Successfully" });
   } catch (err) {
@@ -13,17 +14,23 @@ exports.postExpenses = async (req, res) => {
   }
 };
 
-exports.getExpenses= async (req,res)=>{
-    try{
-        const expenses=await Expense.findAll();
-        res.status(200).json(expenses)
+exports.getExpenses = async (req, res) => {
+  try {
+    const userId = req.user.id;
 
-    }
-    catch(err){
-        console.log(err);
-        res.status(501).json({message:"Can't fetcu the Expense"});
-    }
-}
+    console.log("MY user Id is ",userId)
+
+    
+    const expenses = await Expense.findAll({ where: { userId } });
+
+    
+    res.status(200).json(expenses);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Can't fetch the Expenses" });
+  }
+};
+
 
 exports.deleteExpense = async (req, res) => {
   try {
