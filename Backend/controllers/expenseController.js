@@ -40,7 +40,7 @@ exports.deleteExpense = async (req, res) => {
     if (!expenseToDelete) {
       return res.status(404).json({ message: "Expense not found" });
     }
-
+    
     await expenseToDelete.destroy();
     res.status(200).json({ message: "Expense deleted successfully" });
   } catch (err) {
