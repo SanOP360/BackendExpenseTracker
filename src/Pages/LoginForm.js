@@ -2,9 +2,10 @@ import React, { useRef } from "react";
 import axios from "axios";
 import "./loginStyles.css";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const Navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -14,14 +15,24 @@ const LoginForm = () => {
     const password = passwordRef.current.value;
 
     axios
-      .post("http://localhost:3000/users/login", {email, password })
+      .post("http://localhost:5000/users/login", { email, password })
       .then((response) => {
-        console.log(response.data);
+        console.log('response is',response.data);
+        
+        localStorage.setItem("jwttoken", response.data.token);
+        
+        
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.token}`;
+        
+        Navigate("/AddExpense");
       })
       .catch((error) => {
         console.error("Error signing up:", error);
       });
 
+    // Clear input fields after form submission
     emailRef.current.value = null;
     passwordRef.current.value = null;
   };
@@ -62,7 +73,9 @@ const LoginForm = () => {
         </div>
 
         <div className="divLink">
-            <Link className="link" to="/Signup">New-User ? Create a New Account </Link>
+          <Link className="link" to="/Signup">
+            New User? Create a New Account
+          </Link>
         </div>
       </form>
     </div>

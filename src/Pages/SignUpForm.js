@@ -15,7 +15,7 @@ const SignUpForm = () => {
     const password = passwordRef.current.value;
 
     axios
-      .post("http://localhost:3000/users/signup", { name, email, password })
+      .post("http://localhost:5000/users/signup", { name, email, password })
       .then((response) => {
         console.log(response.data);
         
