@@ -34,7 +34,20 @@
     background-color: #45a049;
 }
 
+.buyPrem{
+  color:white;
+  background-color: #ff6347;
+  width: 100%;
+  padding: 10px auto;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
 
+.buyPrem:hover{
+  color:rgb(218, 217, 217);
+  background-color: #ea3515;
+}
 
 
 .expense-list {
@@ -65,4 +78,39 @@
 
 .expense-item button:hover {
   background-color: #ff4839;
+}
+
+
+
+.leaderboard-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+
+.leaderboard h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+
+.leaderboard-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-entry p {
+  margin: 0;
+}
+
+
+.leaderboard-entry:first-child {
+  background-color: #ffd700; 
+  font-weight: bold;
 }
