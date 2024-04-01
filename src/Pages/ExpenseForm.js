@@ -87,10 +87,16 @@ const ExpenseForm = () => {
       .then((response) => {
         console.log(response);
         reloadExpenses();
+        showLeaderBoardHandler();
       })
       .catch((error) => {
         console.error(error);
       });
+
+
+      priceRef.current.value="";
+      categoryRef.current.value="";
+      descriptionRef.current.value=""
   };
 
   const deleteExpense = (expenseId) => {
@@ -99,6 +105,7 @@ const ExpenseForm = () => {
       .then((response) => {
         console.log(response);
         reloadExpenses();
+        showLeaderBoardHandler();
       })
       .catch((error) => {
         console.error(error);
@@ -186,6 +193,7 @@ const ExpenseForm = () => {
     }
   };
 
+  
 
  const showLeaderBoardHandler = async () => {
   try {
@@ -216,9 +224,10 @@ const ExpenseForm = () => {
 };
 
 
+
   
 
- return (
+return (
    <div className="expense-form">
      {visibility && (
        <button
@@ -231,7 +240,7 @@ const ExpenseForm = () => {
      )} 
      {!visibility &&
        <>
-         <p>You are a premium user</p>
+         <p className="premiumText">You are a premium user</p>
          <button className="leaderboard-btn" onClick={showLeaderBoardHandler}>
            Show LeaderBoard
          </button>

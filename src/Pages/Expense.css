@@ -114,3 +114,24 @@
   background-color: #ffd700; 
   font-weight: bold;
 }
+
+
+.premiumText{
+  font-size: 1.2rem;
+  color:#393207;
+  font-weight: bold;
+}
+
+.leaderboard-btn{
+  font-size: 1.2rem;
+  color:rgb(234, 8, 8);
+  background-color:#fad60a;
+  border-radius: 10px;
+  padding: 10px auto;
+  cursor: pointer;
+}
+
+.leaderboard-btn:hover{
+  color:rgb(129, 10, 10);
+  background-color: #ffd9008e;
+}
