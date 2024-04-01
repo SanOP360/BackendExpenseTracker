@@ -4,8 +4,9 @@ const Expense = require("../models/Expense");
 exports.showLeaderBoard = async (req, res) => {
 
   try {
-    const expenses = await Expense.findAll();
-    const users = await User.findAll();
+    const expenses = await Expense.findAll({ attributes: ["UserId", "price"] });
+    const users = await User.findAll({ attributes: ["id", "name"] });
+
 
     let outputArr = [];
 
