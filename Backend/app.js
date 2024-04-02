@@ -10,10 +10,7 @@ const User=require('./models/User');
 const Order=require('./models/Order');
 const Expense=require('./models/Expense');
 const PurchaseRoutes=require('./routes/PurchaseRoutes');
-<<<<<<< HEAD
 const passwordRoutes=require('./routes/Password');
-=======
->>>>>>> c6c62ff8c610c38146ff25f3229045d5f5ec20c3
 require("dotenv").config();
 
 app.use(bodyParser.json());
@@ -23,12 +20,9 @@ app.use(cors());
 app.use('/users',userRoutes);
 app.use('/Expense',expenseRoutes);
 app.use('/purchase',PurchaseRoutes);
-<<<<<<< HEAD
 app.use('/premium',PremiumRoutes);
 app.use('/password',passwordRoutes);
-=======
 app.use('/premium',PremiumRoutes)
->>>>>>> c6c62ff8c610c38146ff25f3229045d5f5ec20c3
 
 
 User.hasMany(Expense);
