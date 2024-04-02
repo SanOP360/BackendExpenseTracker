@@ -70,6 +70,11 @@ const ExpenseForm = () => {
     const description = descriptionRef.current.value;
     const category = categoryRef.current.value;
 
+    if(!price || !description || !category){
+      alert("Please fill all the fields");
+      return;
+    }
+
     axios 
       .post(
         "http://localhost:5000/Expense/add-expense",
