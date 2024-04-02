@@ -10,6 +10,7 @@ const User=require('./models/User');
 const Order=require('./models/Order');
 const Expense=require('./models/Expense');
 const PurchaseRoutes=require('./routes/PurchaseRoutes');
+const passwordRoutes=require('./routes/Password');
 require("dotenv").config();
 
 app.use(bodyParser.json());
@@ -19,7 +20,8 @@ app.use(cors());
 app.use('/users',userRoutes);
 app.use('/Expense',expenseRoutes);
 app.use('/purchase',PurchaseRoutes);
-app.use('/premium',PremiumRoutes)
+app.use('/premium',PremiumRoutes);
+app.use('/password',passwordRoutes);
 
 
 User.hasMany(Expense);
