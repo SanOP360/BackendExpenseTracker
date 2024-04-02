@@ -1,18 +1,33 @@
 const Expense = require('../models/Expense');
+const sequelize=require('../database')
+
+
+
 
 exports.postExpenses = async (req, res) => {
-  const { price, description, categories} = req.body;
+  const { price, description, categories } = req.body;
+  const t = await sequelize.transaction();
+
   try {
-    const userId=req.user.id;
-    await Expense.create({
-      price, description, categories,UserId:userId
-    });
+    const userId = req.user.id;
+    await Expense.create(
+      {
+        price,
+        description,
+        categories,
+        UserId: userId,
+      },
+      { transaction: t }
+    );
+    await t.commit(); 
     res.status(201).json({ message: "Expense Created Successfully" });
   } catch (err) {
+    await t.rollback(); 
     console.log(err);
-    res.status(500).json({ message: "Cant create the Expense" });
+    res.status(500).json({ message: "Can't create the Expense" });
   }
 };
+
 
 exports.getExpenses = async (req, res) => {
   try {
