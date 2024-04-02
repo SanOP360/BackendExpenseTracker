@@ -18,7 +18,7 @@ require("dotenv").config();
 
 app.use(bodyParser.json());
 
-app.use(cors());
+app.use(cors()); 
 
 app.use('/users',userRoutes);
 app.use('/Expense',expenseRoutes);
