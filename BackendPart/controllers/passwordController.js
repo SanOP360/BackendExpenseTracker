@@ -1,7 +1,4 @@
 
-// controllers/passwordController.js
-
-// controllers/passwordController.js
 
 const ResetPassword = require("../models/ResetPassword");
 const User = require("../models/User");
