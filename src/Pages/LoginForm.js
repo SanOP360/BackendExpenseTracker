@@ -37,6 +37,10 @@ const LoginForm = () => {
     passwordRef.current.value = null;
   };
 
+  const forgotPasswordBtnHandler=()=>{
+    Navigate('/forgotPassword')
+  }
+
   return (
     <div className="MainDiv">
       <form onSubmit={submitForm} className="custom-form">
@@ -70,6 +74,10 @@ const LoginForm = () => {
           <button type="submit" className="custom-button">
             Login
           </button>
+        </div>
+
+        <div>
+          <button onClick={forgotPasswordBtnHandler}>Forgot Password</button>
         </div>
 
         <div className="divLink">
