@@ -10,6 +10,7 @@ const User=require('./models/User');
 const Order=require('./models/Order');
 const Expense=require('./models/Expense');
 const PurchaseRoutes=require('./routes/PurchaseRoutes');
+const ResetPasswod=require('./models/ResetPassword');
 const passwordRoutes=require('./routes/Password');
 require("dotenv").config();
 
@@ -28,7 +29,10 @@ app.use('/premium',PremiumRoutes)
 User.hasMany(Expense);
 User.hasMany(Order);
 Expense.belongsTo(User,{foreignKey:"UserId"});
-Order.belongsTo(User)
+Order.belongsTo(User);
+
+User.hasMany(ResetPasswod);
+ResetPasswod.belongsTo(User);
 
 
 
