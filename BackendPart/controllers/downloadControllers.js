@@ -26,10 +26,26 @@ exports.downloadExpenses = async (req, res) => {
     const fileUrl = `/downloads/${fileName}`;
     await DownloadedFile.create({ fileUrl, UserId: userId });
 
-    // Send the file as an attachment
     res.download(filePath, fileName);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error downloading expenses" });
+  }
+};
+
+
+
+
+exports.listDownloadedFiles = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const downloadedFiles = await DownloadedFile.findAll({
+      where: { UserId: userId },
+      attributes: ["fileUrl", "createdAt"], 
+    });
+    res.status(200).json(downloadedFiles);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error fetching downloaded files" });
   }
 };
