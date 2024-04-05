@@ -13,6 +13,8 @@ const PurchaseRoutes=require('./routes/PurchaseRoutes');
 const ResetPasswod=require('./models/ResetPassword');
 const passwordRoutes=require('./routes/Password');
 require("dotenv").config();
+const downloadRoutes=require('./routes/DownloadedRoutes')
+const downloadFiles=require('./models/Download');
 
 app.use(bodyParser.json());
 
@@ -24,6 +26,7 @@ app.use('/purchase',PurchaseRoutes);
 app.use('/premium',PremiumRoutes);
 app.use('/password',passwordRoutes);
 app.use('/premium',PremiumRoutes)
+app.use('/downloads',downloadRoutes);
 
 
 User.hasMany(Expense);
@@ -34,6 +37,9 @@ Order.belongsTo(User);
 User.hasMany(ResetPasswod);
 ResetPasswod.belongsTo(User);
 
+
+User.hasMany(downloadFiles);
+downloadFiles.belongsTo(User);
 
 
 
