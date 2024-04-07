@@ -15,10 +15,16 @@ const passwordRoutes=require('./routes/Password');
 require("dotenv").config();
 const downloadRoutes=require('./routes/DownloadedRoutes')
 const downloadFiles=require('./models/Download');
+const helmet=require('helmet');
+const compression=require('compression');
+
 
 app.use(bodyParser.json());
 
 app.use(cors()); 
+app.use(helmet());
+app.use(compression());
+
 
 app.use('/users',userRoutes);
 app.use('/Expense',expenseRoutes);

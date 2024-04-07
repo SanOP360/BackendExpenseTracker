@@ -3,11 +3,13 @@ const Order = require("../models/Order");
 const User=require("../models/User");
 require("dotenv").config();
 
-var rzp = new Razorpay({
-  key_id: "rzp_test_bAAtb0LuNLvbLp",
-  key_secret: "VnJZaLwIU60AS7zKLXP5Y9Cw",
-});
 
+
+
+var rzp = new Razorpay({
+  key_id: process.env.Razorpay_key_id,
+  key_secret: process.env.Razorpay_key_secret,
+});
 console.log(rzp.key_id);
 console.log(process.env.Razorpay_key_secret);
 console.log(rzp);

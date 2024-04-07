@@ -23,9 +23,6 @@ exports.downloadExpenses = async (req, res) => {
     const filePath = path.join(downloadDir, fileName);
     fs.writeFileSync(filePath, csv);
 
-    const fileUrl = `/downloads/${fileName}`;
-    await DownloadedFile.create({ fileUrl, UserId: userId });
-
     res.download(filePath, fileName);
   } catch (err) {
     console.error(err);
@@ -47,5 +44,22 @@ exports.listDownloadedFiles = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Error fetching downloaded files" });
+  }
+};
+
+
+exports.postLink = async (req, res) => {
+  try {
+    const { fileUrl } = req.body;
+    const userId = req.user.id;
+
+    if (!fileUrl) {
+      return res.status(400).json({ message: "fileUrl is required" });
+    }
+    await DownloadedFile.create({ fileUrl, UserId: userId });
+    res.status(201).json({ message: "File link stored successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error storing file link" });
   }
 };
