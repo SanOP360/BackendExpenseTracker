@@ -17,6 +17,9 @@ const downloadRoutes=require('./routes/DownloadedRoutes')
 const downloadFiles=require('./models/Download');
 const helmet=require('helmet');
 const compression=require('compression');
+const morgan=require('morgan');
+const fs=require('fs');
+const path=require('path');
 
 
 app.use(bodyParser.json());
@@ -25,6 +28,12 @@ app.use(cors());
 app.use(helmet());
 app.use(compression());
 
+const accesslogstream = fs.createWriteStream(
+  path.join(__dirname, "access.log"),
+  { flags: "a" }
+);
+
+app.use(morgan('combined',{stream:accesslogstream}));
 
 app.use('/users',userRoutes);
 app.use('/Expense',expenseRoutes);
